@@ -5,8 +5,13 @@
     "demo-node-app": "apps/demo-node-app",
     "demo-web-app": "apps/demo-web-app",
     "demo-web-app-e2e": "apps/demo-web-app-e2e",
+    "express-api": "apps/express-api",
+    "header": "libs/header",
+    "header-e2e": "apps/header-e2e",
     "hello-tsc": "libs/hello-tsc",
     "lib-test": "libs/lib-test",
+    "next-demo": "apps/next-demo",
+    "next-demo-e2e": "apps/next-demo-e2e",
     "react-test": "apps/react-test",
     "react-test-e2e": "apps/react-test-e2e"
   }
