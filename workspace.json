@@ -2,6 +2,11 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "demo-node-app": "apps/demo-node-app",
+    "demo-web-app": "apps/demo-web-app",
+    "demo-web-app-e2e": "apps/demo-web-app-e2e",
+    "hello-tsc": "libs/hello-tsc",
+    "lib-test": "libs/lib-test",
     "react-test": "apps/react-test",
     "react-test-e2e": "apps/react-test-e2e"
   }

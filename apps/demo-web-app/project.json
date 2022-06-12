@@ -1,0 +1,70 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/demo-web-app/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/demo-web-app",
+        "compiler": "babel",
+        "index": "apps/demo-web-app/src/index.html",
+        "baseHref": "/",
+        "main": "apps/demo-web-app/src/main.ts",
+        "polyfills": "apps/demo-web-app/src/polyfills.ts",
+        "tsConfig": "apps/demo-web-app/tsconfig.app.json",
+        "assets": [
+          "apps/demo-web-app/src/favicon.ico",
+          "apps/demo-web-app/src/assets"
+        ],
+        "styles": ["apps/demo-web-app/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/demo-web-app/src/environments/environment.ts",
+              "with": "apps/demo-web-app/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "demo-web-app:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "demo-web-app:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/demo-web-app/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/demo-web-app"],
+      "options": {
+        "jestConfig": "apps/demo-web-app/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
