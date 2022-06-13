@@ -10,6 +10,8 @@
     "header-e2e": "apps/header-e2e",
     "hello-tsc": "libs/hello-tsc",
     "lib-test": "libs/lib-test",
+    "nest-app-prisma": "apps/nest-app-prisma",
+    "nest-lib": "libs/nest-lib",
     "next-demo": "apps/next-demo",
     "next-demo-e2e": "apps/next-demo-e2e",
     "react-test": "apps/react-test",
