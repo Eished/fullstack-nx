@@ -1,0 +1,77 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/data-model/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "libs/data-model/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/data-model"
+      ],
+      "options": {
+        "jestConfig": "libs/data-model/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "migrate-save": {
+      "builder": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npx prisma migrate dev --create-only --schema ./prisma/schema.prisma",
+        "cwd": "libs/data-model"
+      }
+    },
+    "migrate-up": {
+      "builder": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npx prisma migrate dev --schema ./prisma/schema.prisma",
+        "cwd": "libs/data-model"
+      }
+    },
+    "migrate-reset": {
+      "builder": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npx prisma migrate reset --schema ./prisma/schema.prisma",
+        "cwd": "libs/data-model"
+      }
+    },
+    "migrate-deploy": {
+      "builder": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npx prisma migrate deploy --schema ./prisma/schema.prisma",
+        "cwd": "libs/data-model"
+      }
+    },
+    "migrate-status": {
+      "builder": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npx prisma migrate status --schema ./prisma/schema.prisma",
+        "cwd": "libs/data-model"
+      }
+    },
+    "studio": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npx prisma studio --schema ./prisma/schema.prisma",
+        "cwd": "libs/data-model"
+      }
+    }
+  },
+  "tags": []
+}
