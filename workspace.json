@@ -16,6 +16,7 @@
     "next-demo": "apps/next-demo",
     "next-demo-e2e": "apps/next-demo-e2e",
     "react-test": "apps/react-test",
-    "react-test-e2e": "apps/react-test-e2e"
+    "react-test-e2e": "apps/react-test-e2e",
+    "ts-study": "libs/ts-study"
   }
 }

@@ -19,7 +19,8 @@
       "@fullstack/header": ["libs/header/src/index.ts"],
       "@fullstack/hello-tsc": ["libs/hello-tsc/src/index.ts"],
       "@fullstack/lib-test": ["libs/lib-test/src/index.ts"],
-      "@fullstack/nest-lib": ["libs/nest-lib/src/index.ts"]
+      "@fullstack/nest-lib": ["libs/nest-lib/src/index.ts"],
+      "@fullstack/ts-study": ["libs/ts-study/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
