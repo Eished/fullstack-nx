@@ -4,6 +4,8 @@
  */
 
 import * as express from 'express';
+import { tsStudy } from '@fullstack/ts-study';
+tsStudy();
 
 const app = express();
 
