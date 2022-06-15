@@ -1,3 +1,6 @@
+// TypeError: Reflect.metadata is not a function
+import 'reflect-metadata';
+
 const test_11_4 = () => {
   class Person {
     #name: string;
@@ -117,9 +120,95 @@ const test_12_4 = () => {
     description: 'throw out trash',
   });
 };
+
+/**
+ * 13.2 装饰器的分类
+类装饰器（Class decorators）
+属性装饰器（Property decorators）
+方法装饰器（Method decorators）
+参数装饰器（Parameter decorators）
+ */
+
+const test_13_2 = () => {
+  // https://juejin.cn/post/7004035071459983390
+  class Person {
+    intro() {
+      console.log('我是一个帅逼');
+    }
+  }
+  new Person().intro(); // 我是一个帅逼
+
+  // 获取原本的行为
+  const origin1 = Person.prototype.intro;
+
+  // 添加羽绒服
+  Person.prototype.intro = function () {
+    origin1.call(this);
+    console.log('我穿了一件羽绒服');
+  };
+  new Person().intro(); // 我是一个帅逼，我穿了一件羽绒服
+
+  // 获取原本的行为，这里的行为已经是被装饰过的
+  const origin2 = Person.prototype.intro;
+
+  // 添加雨衣
+  Person.prototype.intro = function () {
+    origin2.call(this);
+    console.log('我穿了一件雨衣');
+  };
+  new Person().intro(); // 我是一个帅逼，我穿了一件羽绒服，我穿了一件羽雨衣
+};
+
+const test_13_3 = () => {
+  function Greeter(greeting: string) {
+    return function (target: Function) {
+      target.prototype.greet = function (): void {
+        console.log(greeting);
+      };
+    };
+  }
+
+  @Greeter('hello decorators')
+  class Greeting {
+    constructor() {
+      // 内部实现
+    }
+  }
+
+  const myGreeting = new Greeting();
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  myGreeting.greet(); // console output: 'Hello Semlinker!';
+};
+
+const test_13_4 = () => {
+  function wearSomething(clothes: string) {
+    return function (target: any, key: string, descriptor: PropertyDescriptor) {
+      const origin = descriptor.value;
+      descriptor.value = function () {
+        origin.call(this);
+        console.log(`我穿了一件${clothes}`);
+      };
+    };
+  }
+
+  class Person {
+    @wearSomething('雨衣1')
+    @wearSomething('羽绒服2')
+    intro() {
+      console.log('我是一个帅逼3');
+    }
+  }
+
+  new Person().intro(); // 我是一个帅逼，我是一个帅逼，我穿了一件羽雨衣
+};
+
 export function tsStudy(): string {
   test_11_4();
   test_12_1();
   test_12_4();
+  test_13_2();
+  test_13_3();
+  test_13_4();
   return 'ts-study';
 }
